@@ -1,0 +1,4 @@
+import {forwardToExternalSystem} from './external-system';import {createWhatsAppUrl,formatWhatsAppOrder} from './whatsapp';import type {ForwardingMode,ForwardingOrder,ForwardingResult} from './types';
+const allowed=new Set<ForwardingMode>(['whatsapp','external','both','none']);
+export async function prepareOrderForwarding(order:ForwardingOrder,whatsapp:string,configuredMode?:string):Promise<ForwardingResult>{const candidate=(configuredMode||process.env.ORDER_FORWARDING_MODE||'whatsapp') as ForwardingMode;const mode=allowed.has(candidate)?candidate:'whatsapp';const external=mode==='external'||mode==='both'?await forwardToExternalSystem(order):{enabled:false as const,reason:'Integração externa desativada.'};const whatsappUrl=mode==='whatsapp'||mode==='both'?createWhatsAppUrl(whatsapp,formatWhatsAppOrder(order)):undefined;return {mode,whatsappUrl,external}}
+export type {ForwardingOrder,ForwardingResult} from './types';
