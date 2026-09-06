@@ -1,0 +1,1 @@
+import {ResourcePage} from '@/components/admin/ResourcePage';export default function Page(){return <ResourcePage table="categories" title="CATEGORIAS" fields="id,name,slug,description,display_order,is_active"/>}

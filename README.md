@@ -51,3 +51,7 @@ npm run build
 ```
 
 Deploy recomendado: Vercel conectado ao repositório. Cadastre as variáveis de ambiente, defina o domínio em `NEXT_PUBLIC_SITE_URL` e faça o deploy. Revise catálogo, preços, WhatsApp, PIX, horários, zonas de entrega e fotografia proprietária antes de abrir pedidos.
+
+## Backend operacional
+
+As instruções completas de banco, Storage, primeiro administrador, RLS e deploy estão em [`SUPABASE_SETUP.md`](SUPABASE_SETUP.md). O catálogo usa Supabase quando configurado e fallback demonstrativo somente em desenvolvimento. O checkout envia apenas IDs ao endpoint seguro; preços, adicionais, cupom e entrega são recalculados no servidor antes de persistir o pedido.

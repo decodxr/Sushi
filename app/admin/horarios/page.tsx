@@ -1,0 +1,1 @@
+import {ResourcePage} from '@/components/admin/ResourcePage';export default function Page(){return <ResourcePage table="business_hours" title="HORÁRIOS" fields="id,day_of_week,open_time,close_time,is_closed"/>}

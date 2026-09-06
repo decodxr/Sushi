@@ -1,0 +1,1 @@
+import {ResourcePage} from '@/components/admin/ResourcePage';export default function Page(){return <ResourcePage table="delivery_zones" title="ENTREGAS" fields="id,name,fee,minimum_order,is_active"/>}
