@@ -1,8 +1,8 @@
 import {
-  InstagramIcon,
   MapPinIcon,
   StarIcon,
 } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
 
 import { restaurant } from "@/data/restaurant";
 import { DailyPromotionSection } from "./DailyPromotionSection";
@@ -56,7 +56,7 @@ export function HomeSections() {
             rel="noreferrer"
             target="_blank"
           >
-            <InstagramIcon aria-hidden="true" size={17} /> @{restaurant.instagram}
+            <FaInstagram aria-hidden="true" size={17} /> @{restaurant.instagram}
           </a>
         </div>
       </section>
