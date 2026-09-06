@@ -1,0 +1,2 @@
+import 'server-only';import {redirect} from 'next/navigation';import {createClient} from '@/lib/supabase/server';
+export async function requireAdmin(){const db=await createClient();const {data:{user}}=await db.auth.getUser();if(!user)redirect('/admin/login');const {data:profile}=await db.from('admin_profiles').select('role').eq('id',user.id).maybeSingle();if(!profile||!['owner','manager','staff'].includes(profile.role))redirect('/admin/login?error=unauthorized');return {user,profile};}
