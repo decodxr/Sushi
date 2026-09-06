@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { CreateOrderInput } from './schema';
-import {resolveDailyPromotion} from '@/services/daily-promotion';
+import {resolveDailyPromotion} from '@/services/daily-promotion-shared';
 import type {PromotionSchedule} from '@/types/promotion';
 
 type ProductRow={id:string;name:string;price:number|string;promotional_price:number|string|null;is_available:boolean};
