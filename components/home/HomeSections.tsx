@@ -1,12 +1,11 @@
-import Link from "next/link";
 import {
-  ArrowUpRightIcon,
   InstagramIcon,
   MapPinIcon,
   StarIcon,
 } from "lucide-react";
 
 import { restaurant } from "@/data/restaurant";
+import { DailyPromotionSection } from "./DailyPromotionSection";
 
 const reviews = [
   {
@@ -30,32 +29,8 @@ const reviews = [
 export function HomeSections() {
   return (
     <>
-      <section className="overflow-hidden bg-lamp py-20">
-        <div className="ticker border-y border-ink/30 py-3">
-          <div className="display text-5xl">
-            HOJE TEM. &nbsp; HOJE PEDE SUSHI. &nbsp; HOJE TEM. &nbsp; HOJE
-            PEDE SUSHI. &nbsp;
-          </div>
-        </div>
+      <DailyPromotionSection />
 
-        <div className="container mt-16 grid items-end gap-10 md:grid-cols-2">
-          <div>
-            <span className="kicker">Oferta ativa até 22:30</span>
-            <h2 className="display mt-5 text-6xl md:text-8xl">
-              TERÇA
-              <br />
-              DO HOT.
-            </h2>
-          </div>
-          <div className="border-l border-ink pl-8">
-            <p className="text-lg">20 unidades • Salmão Crunch</p>
-            <strong className="display mt-3 block text-6xl">R$ 39,90</strong>
-            <Link className="btn btn-dark mt-8" href="/cardapio">
-              Quero agora <ArrowUpRightIcon aria-hidden="true" size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
 
       <section className="bg-ink py-24 text-white">
         <div className="container">

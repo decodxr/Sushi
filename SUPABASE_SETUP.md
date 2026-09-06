@@ -73,3 +73,7 @@ Sem credenciais, a vitrine usa o catálogo demonstrativo local; checkout e admin
 ### Encaminhamento de pedidos
 
 `ORDER_FORWARDING_MODE` aceita `whatsapp`, `external`, `both` ou `none`. O modo padrão é `whatsapp`. O número é lido primeiro de `site_settings.restaurant.whatsapp` e usa a configuração central do restaurante apenas como fallback. O adaptador externo permanece desativado até existirem URL, autenticação e contrato reais do sistema do restaurante; nenhum pagamento é capturado pelo site.
+
+### Promoção do dia
+
+Aplique também `004_daily_promotions.sql`. Depois, use `/admin/promocoes` para cadastrar a programação semanal ou publicar exceções com início e fim. A resolução usa `America/Sao_Paulo`, prioriza uma exceção ativa e volta automaticamente à promoção semanal quando ela expira. Salvar ou encerrar uma promoção invalida imediatamente o cache da homepage.

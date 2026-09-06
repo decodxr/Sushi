@@ -1,5 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { CreateOrderInput } from './schema';
+import {resolveDailyPromotion} from '@/services/daily-promotion';
+import type {PromotionSchedule} from '@/types/promotion';
 
 type ProductRow={id:string;name:string;price:number|string;promotional_price:number|string|null;is_available:boolean};
 type OptionDefinition={id:string;name:string;product_id:string;required:boolean;min_selections:number;max_selections:number};
@@ -12,6 +14,8 @@ export async function calculateOrder(db:SupabaseClient,input:CreateOrderInput){
   const products=productResult.data as ProductRow[];
   if(products.length!==ids.length)throw new Error('Um produto não existe.');
 
+  const promotionResult=await db.from('promotion_schedule').select('*,products(id,name,price,image_url,is_available,active)').eq('is_active',true);
+  const dailyPromotion=promotionResult.error?null:resolveDailyPromotion((promotionResult.data??[]) as unknown as PromotionSchedule[]);
   const definitionsResult=await db.from('product_options').select('id,name,product_id,required,min_selections,max_selections').in('product_id',ids);
   if(definitionsResult.error)throw new Error('Falha ao validar opções.');
   const definitions=definitionsResult.data as OptionDefinition[];
@@ -32,7 +36,8 @@ export async function calculateOrder(db:SupabaseClient,input:CreateOrderInput){
     selected.forEach(option=>counts.set(option.product_options.id,(counts.get(option.product_options.id)??0)+1));
     const productDefinitions=definitions.filter(option=>option.product_id===item.productId);
     if(productDefinitions.some(option=>(counts.get(option.id)??0)<option.min_selections||(counts.get(option.id)??0)>option.max_selections))throw new Error('Seleção de adicionais inválida.');
-    const unit=Number(product.promotional_price??product.price)+selected.reduce((sum,option)=>sum+Number(option.price_modifier),0);
+    const basePrice=dailyPromotion?.productId===product.id&&dailyPromotion.price!==null?dailyPromotion.price:Number(product.promotional_price??product.price);
+    const unit=basePrice+selected.reduce((sum,option)=>sum+Number(option.price_modifier),0);
     return {...item,product,selected,unit,subtotal:unit*item.quantity};
   });
 
