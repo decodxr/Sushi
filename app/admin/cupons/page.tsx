@@ -1,0 +1,1 @@
+import {ResourcePage} from '@/components/admin/ResourcePage';export default function Page(){return <ResourcePage table="coupons" title="CUPONS" fields="id,code,discount_type,discount_value,minimum_order,starts_at,ends_at,is_active"/>}

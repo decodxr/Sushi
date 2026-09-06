@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function NotFound(){return <main className="grid min-h-screen place-items-center bg-signal p-6 text-white"><div><p className="display text-[9rem] text-ink">404</p><h1 className="display text-5xl">ESSE SUSHI<br/>SUMIU DO PRATO.</h1><Link href="/cardapio" className="btn btn-dark mt-8">Voltar ao cardápio</Link></div></main>}
