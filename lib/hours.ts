@@ -1,0 +1,2 @@
+import { restaurant } from '@/data/restaurant';
+export function getStoreStatus(date=new Date()) { const local=new Date(date.toLocaleString('en-US',{timeZone:'America/Sao_Paulo'})); const h=restaurant.hours.find(x=>x.day===local.getDay())!; const minutes=local.getHours()*60+local.getMinutes(); const parse=(v:string)=>{const [a,b]=v.split(':').map(Number);return a*60+b}; return {open:minutes>=parse(h.open)&&minutes<parse(h.close),hours:h}; }
