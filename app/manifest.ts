@@ -1,0 +1,1 @@
+import type {MetadataRoute} from 'next';export default function manifest():MetadataRoute.Manifest{return {name:'Sushi em Casa Express',short_name:'Sushi em Casa',description:'Seu japa da noite em Campo Mourão.',start_url:'/',display:'standalone',background_color:'#F4F0E8',theme_color:'#111315',icons:[{src:'/icon.svg',sizes:'any',type:'image/svg+xml'}]}}

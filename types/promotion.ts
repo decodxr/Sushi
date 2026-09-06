@@ -1,0 +1,3 @@
+export type PromotionProduct={id:string;name:string;price:number;image_url:string|null;is_available:boolean;active:boolean};
+export type PromotionSchedule={id:string;schedule_type:'weekly'|'date_range';weekday:number|null;product_id:string|null;title:string;eyebrow:string|null;subtitle:string|null;promotional_price:number|null;start_time:string|null;end_time:string|null;specific_start_at:string|null;specific_end_at:string|null;cta_label:string;cta_href:string|null;show_before_start:boolean;is_active:boolean;products:PromotionProduct|null};
+export type DailyPromotion={id:string;title:string;eyebrow:string;subtitle:string;price:number|null;ctaLabel:string;ctaHref:string;state:'upcoming'|'active';statusLabel:string;productId:string|null};

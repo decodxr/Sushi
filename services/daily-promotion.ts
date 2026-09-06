@@ -1,0 +1,3 @@
+import 'server-only';
+import {createAdminClient} from '@/lib/supabase/admin';import {resolveDailyPromotion} from '@/services/daily-promotion-shared';import type {PromotionSchedule} from '@/types/promotion';
+export async function getDailyPromotion(now=new Date()){if(!process.env.NEXT_PUBLIC_SUPABASE_URL||!process.env.SUPABASE_SERVICE_ROLE_KEY)return null;const {data,error}=await createAdminClient().from('promotion_schedule').select('*,products(id,name,price,image_url,is_available,active)').eq('is_active',true);if(error)return null;return resolveDailyPromotion((data??[]) as unknown as PromotionSchedule[],now)}
